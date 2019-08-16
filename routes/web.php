@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index')->name('top');
 
-Auth::routes();
+Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+
